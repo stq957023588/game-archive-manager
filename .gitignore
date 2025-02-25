@@ -35,3 +35,13 @@ out/
 
 ### VS Code ###
 .vscode/
+
+*.db
+
+archive
+
+rebel.xml
+
+.env
+
+test/

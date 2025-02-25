@@ -1,11 +1,13 @@
 server:
   port: 9000
 
+
+
 spring:
+  config:
+    import: optional:file:.env[.properties]
   profiles:
-    include: mq-memory,cache-redis
-#    include: mq-rabbit,cache-memory
-#    include: mq-memory,cache-memory
+    include: mq-${MESSAGE_QUEUE_TYPE},cache-${CACHE_TYPE}
   datasource:
     #    driver-class-name: com.mysql.cj.jdbc.Driver
     #    url: jdbc:mysql://127.0.0.1:3306/game_archive_manager
