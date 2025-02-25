@@ -1,0 +1,19 @@
+{
+  "properties": [
+    {
+      "name": "message-queue.type",
+      "type": "com.fool.gamearchivemanager.entity.enums.MessageQueueType",
+      "description": "."
+    },
+    {
+      "name": "cache.type",
+      "type": "com.fool.gamearchivemanager.entity.enums.CacheType",
+      "description": "."
+    },
+    {
+      "name": "security.ignores",
+      "type": "java.lang.String[]",
+      "description": "."
+    }
+  ]
+}

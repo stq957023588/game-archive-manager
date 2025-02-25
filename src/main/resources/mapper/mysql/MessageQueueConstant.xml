@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fool.gamearchivemanager.mapper.GameMapper">
+
+
+    <insert id="save" parameterType="com.fool.gamearchivemanager.entity.po.GameArchive">
+        insert into gameArchive(game_name, md5, user_id, archive_path, save_time)
+        values (#{gameName,jdbcType=VARCHAR}, #{md5,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER},
+                #{archivePath,jdbcType=VARCHAR}, #{saveTime,jdbcType=TIMESTAMP})
+        on duplicate key update md5       = values(md5),
+                                archive_path = values(archive_path),
+                                save_time = values(save_time)
+    </insert>
+</mapper>

@@ -1,0 +1,48 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.3.5'
+    id 'io.spring.dependency-management' version '1.1.6'
+}
+
+group = 'com.fool'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation('com.alibaba.otter:canal.client:1.1.0')
+    implementation('com.auth0:java-jwt:3.3.0')
+    implementation('io.netty:netty-all:4.1.66.Final')
+    implementation('org.springframework.statemachine:spring-statemachine-core:4.0.0')
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation "org.springframework.boot:spring-boot-starter-security"
+    implementation('org.springframework.boot:spring-boot-starter-data-redis')
+//    implementation "org.springframework.boot:spring-boot-starter-oauth2-authorization-server"
+//    implementation "org.springframework.boot:spring-boot-starter-oauth2-resource-server"
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    implementation 'com.baomidou:mybatis-plus-spring-boot3-starter:3.5.9'
+    runtimeOnly 'com.mysql:mysql-connector-j'
+    implementation 'org.xerial:sqlite-jdbc:3.42.0.0'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+tasks.withType(JavaCompile) {
+    configure(options) {
+        options.compilerArgs << '-parameters'
+    }
+}

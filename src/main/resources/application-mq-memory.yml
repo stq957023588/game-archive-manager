@@ -1,0 +1,6 @@
+message-queue:
+  type: MEMORY
+
+spring:
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration

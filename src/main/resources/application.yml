@@ -1,0 +1,38 @@
+server:
+  port: 9000
+
+spring:
+  profiles:
+    include: mq-memory,cache-redis
+#    include: mq-rabbit,cache-memory
+#    include: mq-memory,cache-memory
+  datasource:
+    #    driver-class-name: com.mysql.cj.jdbc.Driver
+    #    url: jdbc:mysql://127.0.0.1:3306/game_archive_manager
+    #    username: root
+    #    password: 123456
+    driver-class-name: org.sqlite.JDBC
+    url: jdbc:sqlite:game_archive_manager.db
+    username:
+    password:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: /mapper/sqlite/**/*.xml
+
+
+security:
+  ignores:
+    - /account
+    - /test/ignore
+    - /error
+    - /actuator/*
+idempotent:
+  urls:
+    - /test/idempotent
+    - /actuator/**
+    - /actuator
+    - /game/archive/file
