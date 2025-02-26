@@ -35,6 +35,4 @@ security:
 idempotent:
   urls:
     - /test/idempotent
-    - /actuator/**
-    - /actuator
     - /game/archive/file
