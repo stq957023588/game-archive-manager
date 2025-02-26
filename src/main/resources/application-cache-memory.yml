@@ -4,3 +4,8 @@ cache:
 spring:
   autoconfigure:
     exclude: org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration
+
+management:
+  health:
+    redis:
+      enabled: false
