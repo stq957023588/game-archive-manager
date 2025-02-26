@@ -8,5 +8,6 @@ LABEL org.name="hezf"
 # Package stage
 #
 FROM eclipse-temurin:21-jdk-jammy
+EXPOSE 80
 COPY --from=build /home/gradle/src/build/libs/game-archive-manager-0.0.1-SNAPSHOT.jar app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]

@@ -2,7 +2,7 @@ package com.fool.gamearchivemanager.entity.constant;
 
 public interface MessageQueueConstant {
 
-    String QUEUE_FILE_SAVED = "FileSavedExchange";
+    String QUEUE_FILE_SAVED = "FileSavedQueue";
     String EXCHANGE_FILE_SAVED = "FileSavedExchange";
 
     String QUEUE_FILE_DELETE = "FileDeleteQueue";
