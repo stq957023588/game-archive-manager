@@ -16,7 +16,7 @@ public class FileService {
         this.nettyFileServer = new NettyFileServer(nettyProperties);
     }
 
-    @PostConstruct
+    // @PostConstruct
     public void startNettyFileServer() {
         Thread thread = new Thread(nettyFileServer);
         thread.start();
