@@ -1,0 +1,9 @@
+spring:
+  liquibase:
+    change-log: classpath:changelog-master-sqlite.xml
+  datasource:
+    driver-class-name: org.sqlite.JDBC
+    url: jdbc:sqlite:game_archive_manager.db
+store:
+  type: sqlite
+

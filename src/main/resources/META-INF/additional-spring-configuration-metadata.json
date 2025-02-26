@@ -14,6 +14,11 @@
       "name": "security.ignores",
       "type": "java.lang.String[]",
       "description": "."
+    },
+    {
+      "name": "store.type",
+      "type": "com.fool.gamearchivemanager.entity.enums.StoreType",
+      "description": "."
     }
   ]
 }

@@ -7,16 +7,7 @@ spring:
   config:
     import: optional:file:.env[.properties]
   profiles:
-    include: mq-${MESSAGE_QUEUE_TYPE},cache-${CACHE_TYPE}
-  datasource:
-    #    driver-class-name: com.mysql.cj.jdbc.Driver
-    #    url: jdbc:mysql://127.0.0.1:3306/game_archive_manager
-    #    username: root
-    #    password: 123456
-    driver-class-name: org.sqlite.JDBC
-    url: jdbc:sqlite:game_archive_manager.db
-    username:
-    password:
+    include: mq-${MESSAGE_QUEUE_TYPE},cache-${CACHE_TYPE},store-${STORE_TYPE}
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
 

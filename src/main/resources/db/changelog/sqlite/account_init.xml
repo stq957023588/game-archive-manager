@@ -1,0 +1,43 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="table_create_account" author="shenlinzheng">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="account"/>
+            </not>
+        </preConditions>
+        <sql>
+            create table account
+            (
+                id          integer
+                    primary key autoincrement,
+                username    text                                not null
+                    constraint uk_username
+                        unique,
+                password    text                                not null,
+                email       text,
+                create_time timestamp default CURRENT_TIMESTAMP not null
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="insert_account_admin" author="shenlinzheng">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*)
+                from account
+                where username = 'admin';
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            INSERT INTO account (username, password, email, create_time) VALUES ('admin', '$2a$10$HPR0YPy45uO7icSnvDneFuenMhPyJOioO0Pr/vG4.mP4mDMqPwEoq', null, '2025-01-22 06:40:01');
+        </sql>
+    </changeSet>
+
+
+
+</databaseChangeLog>
