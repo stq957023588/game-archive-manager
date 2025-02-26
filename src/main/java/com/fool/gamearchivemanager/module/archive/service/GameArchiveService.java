@@ -1,6 +1,7 @@
 package com.fool.gamearchivemanager.module.archive.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.fool.gamearchivemanager.entity.constant.SystemSettingCode;
 import com.fool.gamearchivemanager.entity.po.GameArchive;
 import com.fool.gamearchivemanager.mapper.GameMapper;
 import com.fool.gamearchivemanager.module.management.service.SystemSettingService;
@@ -37,19 +38,18 @@ public class GameArchiveService {
     }
 
     public List<GameArchive> outOfRangeData(Integer uid, String gameName) {
-        String maxArchiveQuantity = systemSettingService.settingValue("");
+        String maxArchiveQuantity = systemSettingService.settingValue(SystemSettingCode.MAX_ARCHIVE_QUANTITY);
         LambdaQueryWrapper<GameArchive> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(GameArchive::getUid, uid)
                 .eq(GameArchive::getGameName, gameName)
                 .orderByDesc(GameArchive::getSaveTime)
-                .last(String.format("limit %s, 18446744073709551615", maxArchiveQuantity));
+                .last(String.format("limit (%s + 1), 18446744073709551615", maxArchiveQuantity));
 
         return gameMapper.selectList(wrapper);
     }
 
     public List<GameArchive> list(Integer uid, String gameName) {
-
-        String maxArchiveQuantity = systemSettingService.settingValue("");
+        String maxArchiveQuantity = systemSettingService.settingValue(SystemSettingCode.MAX_ARCHIVE_QUANTITY);
 
         LambdaQueryWrapper<GameArchive> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(GameArchive::getUid, uid)

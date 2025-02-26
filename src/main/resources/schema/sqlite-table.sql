@@ -9,3 +9,28 @@ create table game_archive
     save_time           timestamp                                        not null,
     upload_time         timestamp default (datetime('now', 'localtime')) not null
 );
+
+create table account
+(
+    id          integer
+        primary key autoincrement,
+    username    text                                not null
+        constraint uk_username
+            unique,
+    password    text                                not null,
+    email       text,
+    create_time timestamp default CURRENT_TIMESTAMP not null
+);
+
+create table system_setting
+(
+    id          integer
+        primary key autoincrement,
+    code        integer                             not null
+        constraint uk_code
+            unique,
+    name        text                                not null,
+    description text,
+    value       text,
+    create_time timestamp default CURRENT_TIMESTAMP not null
+);
