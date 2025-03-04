@@ -8,11 +8,14 @@
 
  1. 安装JDK
 
- 2. 从Release中下载可执行Jar
+ 2. 获取可执行Jar
+
+    * 从Release下载
+    * 下载源码，在根目录执行``gradlew bootJar``
 
  3. 将Jar放在一个文件夹内，并在文件夹内创建一个.env文件
 
-    ```env
+    ```.env
     # 缓存类型，可选：memory,redis
     CACHE_TYPE: redis
     # 消息队列类型，可选：memory,rabbit
