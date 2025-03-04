@@ -1,13 +1,16 @@
 package com.fool.gamearchivemanager.config.message.queue;
 
 import com.fool.gamearchivemanager.Application;
+import com.fool.gamearchivemanager.listener.ArchiveFileSavedMessageListener;
 import com.fool.gamearchivemanager.listener.FileDeleteMessageListener;
 import com.fool.gamearchivemanager.listener.SimpleMessageListener;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
+import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.actuate.endpoint.web.annotation.WebEndpoint;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,6 +23,11 @@ import java.util.Map;
 @Configuration
 @ConditionalOnProperty(name = "message-queue.type", havingValue = "RABBIT")
 public class RabbitMqConfiguration {
+    @Bean
+    Jackson2JsonMessageConverter jackson2JsonMessageConverter() {
+        return new Jackson2JsonMessageConverter();
+    }
+
 
     // region 存档文件保存队列
     @Bean(QUEUE_FILE_SAVED)
@@ -108,6 +116,18 @@ public class RabbitMqConfiguration {
         container.setAcknowledgeMode(AcknowledgeMode.MANUAL);
         container.setQueueNames(DLX_QUEUE_FILE_DELETE); // 绑定要监听的队列
         container.setMessageListener(new SimpleMessageListener());
+        return container;
+    }
+
+
+    // 配置测试队列消费者
+    @Bean
+    public SimpleMessageListenerContainer fileSavedMessageListener(ConnectionFactory connectionFactory) {
+        SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
+        container.setConnectionFactory(connectionFactory);
+        container.setAcknowledgeMode(AcknowledgeMode.MANUAL);
+        container.setQueueNames(QUEUE_FILE_SAVED); // 绑定要监听的队列
+        container.setMessageListener(new ArchiveFileSavedMessageListener());
         return container;
     }
 

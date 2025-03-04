@@ -3,7 +3,7 @@
 <mapper namespace="com.fool.gamearchivemanager.mapper.GameMapper">
 
 
-    <insert id="save" parameterType="com.fool.gamearchivemanager.entity.po.GameArchive">
+    <insert id="save"  useGeneratedKeys="true" keyProperty="id" parameterType="com.fool.gamearchivemanager.entity.po.GameArchive">
         insert into gameArchive(game_name, md5, user_id, archive_path, save_time)
         values (#{gameName,jdbcType=VARCHAR}, #{md5,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER},
                 #{archivePath,jdbcType=VARCHAR}, #{saveTime,jdbcType=TIMESTAMP})

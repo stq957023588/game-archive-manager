@@ -7,10 +7,7 @@ import com.fool.gamearchivemanager.module.file.FileService;
 import com.fool.gamearchivemanager.config.message.queue.MessageQueueTemplate;
 import com.fool.gamearchivemanager.module.account.service.AccountService;
 import com.fool.gamearchivemanager.util.SecurityContextUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -52,7 +49,7 @@ public class GameArchiveController {
 
 
     @PostMapping("/game/archive")
-    public GameArchive saveArchive(@ModelAttribute GameArchive gameArchive) {
+    public GameArchive saveArchive(@RequestBody GameArchive gameArchive) {
         String username = SecurityContextUtils.getUsername();
         AccountDTO user = accountService.getUser(username);
 

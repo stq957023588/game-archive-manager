@@ -43,7 +43,7 @@ public class GameArchiveService {
         wrapper.eq(GameArchive::getUid, uid)
                 .eq(GameArchive::getGameName, gameName)
                 .orderByDesc(GameArchive::getSaveTime)
-                .last(String.format("limit (%s + 1), 18446744073709551615", maxArchiveQuantity));
+                .last(String.format("limit (%s + 1), 1000", maxArchiveQuantity));
 
         return gameMapper.selectList(wrapper);
     }

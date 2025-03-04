@@ -30,7 +30,7 @@ public class FileController {
         this.gameArchiveService = gameArchiveService;
     }
 
-    @PostMapping("/game/archive/file")
+    @PostMapping("/file/game/archive")
     public void pushArchiveFile(@Param("archiveId") String archiveId, @Param("file") MultipartFile file) throws IOException {
         GameArchive detail = gameArchiveService.detail(archiveId);
         if (detail == null) {
@@ -44,7 +44,7 @@ public class FileController {
         messageQueueTemplate.send(MessageQueueConstant.EXCHANGE_FILE_SAVED, detail);
     }
 
-    @GetMapping("/game/archive/file")
+    @GetMapping("/file/game/archive")
     public void getArchive(String archiveId, HttpServletResponse response) throws FileNotFoundException {
         GameArchive detail = gameArchiveService.detail(archiveId);
         if (detail == null) {
