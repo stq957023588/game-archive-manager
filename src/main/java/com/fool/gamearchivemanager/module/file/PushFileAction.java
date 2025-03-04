@@ -67,7 +67,7 @@ public class PushFileAction implements FileTransferProtocolAction {
         // TODO 消息队列发送存档信息，而不是存档文件地址
         MessageQueueTemplate template = SpringContextUtils.getBean(MessageQueueTemplate.class);
         for (GameArchive archive : gameArchives) {
-            template.send(MessageQueueConstant.EXCHANGE_FILE_DELETE,archive.getArchivePath());
+            template.send(MessageQueueConstant.EXCHANGE_TEST,archive.getArchivePath());
         }
 
     }

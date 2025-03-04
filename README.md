@@ -1,4 +1,32 @@
-# TODO
+# 游戏存档管理服务器
 
-1. 记录存档下载次数
-2. 存档HOT排行榜
+用于管理游戏存档
+
+请搭配本地游戏存档管理器一起使用
+
+# 安装启动
+
+ 1. 安装JDK
+
+ 2. 从Release中下载可执行Jar
+
+ 3. 将Jar放在一个文件夹内，并在文件夹内创建一个.env文件
+
+    ```env
+    # 缓存类型，可选：memory,redis
+    CACHE_TYPE: redis
+    # 消息队列类型，可选：memory,rabbit
+    MESSAGE_QUEUE_TYPE: rabbit
+    # 数据库类型，可选：sqlite,mysql
+    STORE_TYPE: sqlite
+    # 服务器开放端口
+    SERVER_PORT: 9001
+    ```
+
+ 4. 执行命令
+
+    ```shell
+    java -jar app.jar
+    ```
+
+    

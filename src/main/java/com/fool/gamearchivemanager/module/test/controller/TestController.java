@@ -21,9 +21,9 @@ public class TestController {
     public void sendMessage(@RequestParam(name = "aaaa") String aaaa) {
         for (int i = 0; i < 20; i++) {
             if (i == 5) {
-                messageQueueTemplate.send(MessageQueueConstant.EXCHANGE_FILE_DELETE,"re");
+                messageQueueTemplate.send(MessageQueueConstant.EXCHANGE_TEST,"re");
             } else {
-                messageQueueTemplate.send(MessageQueueConstant.EXCHANGE_FILE_DELETE,String.valueOf(i));
+                messageQueueTemplate.send(MessageQueueConstant.EXCHANGE_TEST,String.valueOf(i));
             }
         }
     }

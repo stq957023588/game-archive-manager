@@ -61,11 +61,12 @@ public class ArchiveFileSavedMessageListener implements ChannelAwareMessageListe
 
     @Override
     public void onMessage(Message message, Channel channel) throws Exception {
+        long deliveryTag = message.getMessageProperties().getDeliveryTag();
         try {
             onMessage(message);
             // 处理消息，假设处理成功
             // 如果处理成功，确认消息
-            long deliveryTag = message.getMessageProperties().getDeliveryTag();
+            log.info("DeliveryTag: {}", message.getMessageProperties().getDeliveryTag());
             channel.basicAck(deliveryTag, false);  // 手动确认消息
 
             // 如果处理失败，使用 channel.basicNack 或 channel.basicReject 进行拒绝或重试
@@ -73,7 +74,6 @@ public class ArchiveFileSavedMessageListener implements ChannelAwareMessageListe
             // 如果处理失败，可以使用 basicNack 拒绝并重新入队
             log.error("消息处理失败！", e);
             try {
-                long deliveryTag = message.getMessageProperties().getDeliveryTag();
                 channel.basicNack(deliveryTag, false, true);  // 将消息重新入队
             } catch (Exception ex) {
                 log.error("", ex);

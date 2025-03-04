@@ -18,12 +18,9 @@ public class SimpleMessageListener implements ChannelAwareMessageListener {
         String body = new String(message.getBody());
         try {
             // 获取消息内容
-            Thread.sleep(1000L);
             log.info("Message info:{}", body);
-            if (Objects.equals(body, "re")) {
-                throw new RuntimeException("TEST re");
-            }
-            log.info("Message({}) confirmed!", body);
+            Thread.sleep(1000L);
+            log.info("Message(deliveryTag:{}) confirmed!", deliveryTag);
             // 处理消息，假设处理成功
             // 如果处理成功，确认消息
             channel.basicAck(deliveryTag, false);  // 手动确认消息

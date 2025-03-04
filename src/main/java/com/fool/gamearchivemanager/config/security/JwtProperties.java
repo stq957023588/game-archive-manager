@@ -9,11 +9,11 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "jwt")
 public class JwtProperties {
 
-    private String issuer = "localhost";
+    private String issuer = "sixteen chapter";
 
-    private String secret = "123";
+    private String secret = "123456";
 
-    private Long expiration = 100000L;
+    private Long expiration;
 
 
 }
