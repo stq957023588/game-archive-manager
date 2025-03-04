@@ -2,7 +2,7 @@
 
 用于管理游戏存档
 
-请搭配本地游戏存档管理器一起使用
+请搭配[本地游戏存档管理器](https://github.com/stq957023588/LocalGameArchiveManager)一起使用
 
 # 安装启动
 
